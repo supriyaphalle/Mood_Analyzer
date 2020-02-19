@@ -3,20 +3,26 @@ package com.Bridgelabz;
 import com.mood.exceptions.MoodAnalysisexceptions;
 
 public class MoodAnalyzer {
+    private String message;
 
     public MoodAnalyzer() {
+
     }
 
+    public MoodAnalyzer(String message)
+    {
+        this.message=message;
+    }
 
-    public String analyzer(String messsage ) throws MoodAnalysisexceptions {
+    public String analyzer() throws MoodAnalysisexceptions {
 
         try {
-            if (messsage.isEmpty())
+            if (message.isEmpty())
             {
                 throw new MoodAnalysisexceptions("Please enter String");
             }
 
-                if (messsage.contains("SAD")) {
+            if (message.contains("SAD")) {
                     return "SAD";
                 } else {
                     return "HAPPY";
