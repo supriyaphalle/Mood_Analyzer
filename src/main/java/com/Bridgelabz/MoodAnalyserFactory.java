@@ -14,6 +14,7 @@ public class MoodAnalyserFactory {
             Class<?> aClass = Class.forName("com.Bridgelabz.MoodAnalyzer");
             Constructor<?> Moodconstructor = aClass.getConstructor();
             myobject = Moodconstructor.newInstance();
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -27,6 +28,26 @@ public class MoodAnalyserFactory {
         ex.printStackTrace();
         }
         return (MoodAnalyzer)myobject;
+    }
+
+    public static MoodAnalyzer createMoodAnalyzerWithParameterConstructure(String mood){
+        Object myobj=null;
+        try {
+            Class<?> aClass = Class.forName("com.Bridgelabz.MoodAnalyzer");
+            Constructor<?> constructor = aClass.getConstructor(String.class);
+             myobj = constructor.newInstance(mood);
+        } catch (InstantiationException e) {
+                e.printStackTrace();
+        } catch (IllegalAccessException e) {
+                e.printStackTrace();
+        } catch (InvocationTargetException e) {
+               e.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+        }catch (NoSuchMethodException e) {
+                e.printStackTrace();
+         }
+        return (MoodAnalyzer)myobj;
     }
 
     public static Constructor<?> getConstructor (String param,Class methodParam) throws MoodAnalysisexceptions{

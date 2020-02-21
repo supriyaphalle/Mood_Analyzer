@@ -105,7 +105,7 @@ public class moodAnalyzerTest {
         }
     }
 
-    ///////////////////Reflector with default constructure
+    ///////////////////  TC 4.1 Reflector with default constructure
     @Test
     public void givenDefaultConstructure_MoodAnalyserClass_WhenProper_ShouldReturnObject() {
         MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzer();
@@ -116,13 +116,13 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-//////////////////////// TC 4.1 using equals method
+//////////////////////// using equals method
     @Test
     public void givenMoodAnalyserClass_WhenProper_ShouldReturnTrue() {
         MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzer();
         Assert.assertEquals(new MoodAnalyzer(),moodAnalise);
     }
-    ////////////////// crete an exception of class not found
+    ////////////////// TC4.2 crete an exception of class not found
     @Test
     public void givenMoodAnalyser_WhenClassNameImproper_ShouldReturnException() {
         try {
@@ -132,7 +132,7 @@ public class moodAnalyzerTest {
         }
     }
 
-////////////////////// create an exception of method not found
+//////////////////////  TC4.3 create an exception of method not found
 
     @Test
     public void givenMoodAnalyser_WhenMethodNameImproper_ShouldReturnException() {
@@ -144,12 +144,11 @@ public class moodAnalyzerTest {
         }
 
     }
-
-
+// UC5- Reflector with parameterrised constructure
     ///////////////////Reflector with parameter constructure
-/*    @Test
+    @Test
     public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject() {
-        MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzer("I an in HAPPY mood");
+        MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructure("I an in HAPPY mood");
         try {
             String mood= moodAnalise.analyzer();
             Assert.assertEquals("HAPPY",mood);
@@ -157,17 +156,50 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
+///////////
+    @Test
+        public void givenMoodAnalyserClass_WhenProper_ShouldReturn() {
+            MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructure("I am in HAPPY mood");
+            Assert.assertEquals(new MoodAnalyzer("I am in HAPPY mood"),moodAnalise);
+        }
+    ////////////////// TC5.2 crete an exception of class not found
+    @Test
+    public void givenMoodAnalyser_withparaConstructure_WhenClassNameImproper_ShouldReturnException() {
+           MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructure("I am in happy mood");
+            Assert.assertEquals(MoodAnalysisexceptions.entered.NO_SUCH_CLASS, moodAnalysisexceptions.type);
 
-
- */
-
-////////////
-
-/*    @Test
-    public void givenMoodAnalyserClass_WhenProper_ShouldReturn() {
-        MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzer("I am in HAPPY mood");
-        Assert.assertEquals(new MoodAnalyzer("I am in HAPPY mood"),moodAnalise);
     }
 
- */
+//////////////////////  TC5.3 create an exception of method not found
+
+    @Test
+    public void givenMoodAnalyser_withparaConstructure_WhenMethodNameImproper_ShouldReturnException() {
+        try {
+            MoodAnalyserFactory.getConstructor("com.Bridgelabz.MoodAnalyzer",Integer.class);
+
+        } catch (MoodAnalysisexceptions moodAnalysisexceptions) {
+            Assert.assertEquals(MoodAnalysisexceptions.entered.NO_SUCH_METHOD, moodAnalysisexceptions.type);
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
