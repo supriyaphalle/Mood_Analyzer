@@ -6,7 +6,7 @@ public class MoodAnalyzer {
     private String message;
 
     public MoodAnalyzer() {
-
+        message="HA";
     }
 
     public MoodAnalyzer(String message)
@@ -14,12 +14,16 @@ public class MoodAnalyzer {
         this.message=message;
     }
 
-    public String analyzer() throws MoodAnalysisexceptions {
+    public String analyzer(String message) throws MoodAnalysisexceptions {
+        this.message=message;
+        return analyzer();
+    }
 
+    public String analyzer() throws MoodAnalysisexceptions {
         try {
             if (message.isEmpty())
             {
-                throw new MoodAnalysisexceptions("Please enter String");
+                throw new MoodAnalysisexceptions(MoodAnalysisexceptions.entered.Enter_Empty,"Please enter Proper mood");
             }
 
             if (message.contains("SAD")) {
@@ -29,8 +33,15 @@ public class MoodAnalyzer {
                 }
             }catch(NullPointerException e)
             {
-                throw new MoodAnalysisexceptions("Please enter Proper mood");
+                throw new MoodAnalysisexceptions(MoodAnalysisexceptions.entered.Enter_Null,"Please enter Proper mood");
             }
-
     }
+
+    public boolean equals(Object another){
+        if(this.message.equals(((MoodAnalyzer) another).message)){
+            return true;
+        }
+        return false;
+    }
+
 }
