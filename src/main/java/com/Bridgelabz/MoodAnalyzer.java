@@ -25,23 +25,19 @@ public class MoodAnalyzer {
             {
                 throw new MoodAnalysisexceptions(MoodAnalysisexceptions.entered.Enter_Empty,"Please enter Proper mood");
             }
-
             if (message.contains("SAD")) {
-                    return "SAD";
-                } else {
-                    return "HAPPY";
-                }
-            }catch(NullPointerException e)
+                return "SAD";
+            } else {
+                return "HAPPY";
+            }}catch(NullPointerException e)
             {
                 throw new MoodAnalysisexceptions(MoodAnalysisexceptions.entered.Enter_Null,"Please enter Proper mood");
             }
     }
-
     public boolean equals(Object another){
         if(this.message.equals(((MoodAnalyzer) another).message)){
             return true;
         }
         return false;
     }
-
 }

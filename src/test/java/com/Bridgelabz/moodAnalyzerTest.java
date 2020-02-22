@@ -9,17 +9,14 @@ import java.lang.reflect.InvocationTargetException;
 public class moodAnalyzerTest {
     @Test
     public void givenSAD_ShouldReturnSAD() {
-
-        String mood = null;
         try {
             MoodAnalyzer moodAnalyzer = new MoodAnalyzer("SAD");
-            mood = moodAnalyzer.analyzer();
+            String mood = moodAnalyzer.analyzer();
             Assert.assertEquals("SAD", mood);
         } catch (MoodAnalysisexceptions moodAnalysisexceptions) {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
     @Test
     public void givenInput_WhenHappy_ShouldReturnHAppy() {
         String mood = null;
@@ -31,7 +28,7 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
+    //////// exception of please enter proper mood
     @Test
     public void givenInput_WhenNull_ShouldReturnException() {
         String mood = null;
@@ -43,7 +40,7 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
+    ////////// exception of please enter proper mood
     @Test
     public void givenInput_WhenEmpty_ShouldReturnException() {
         String mood = null;
@@ -56,7 +53,6 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
     @Test
     public void givenInput_whenforDefaultConstructor_ShouldReturnHappy() {
         String mood = null;
@@ -68,7 +64,6 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
     //Constructure Parameter
     @Test
     public void givenInput_whenSAD_Constructure_ShouldReturnSad() {
@@ -81,7 +76,6 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
     @Test
     public void givenInput_whenHappyConstructure_ShouldReturnSad() {
         String mood = null;
@@ -93,7 +87,6 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
     ///Enum
     @Test
     public void givenInput_whenEmuncase_ShouldReturnSad() {
@@ -106,7 +99,6 @@ public class moodAnalyzerTest {
 
         }
     }
-
     ///////////////////  TC 4.1 Reflector with default constructure
     @Test
     public void givenDefaultConstructure_MoodAnalyserClass_WhenProper_ShouldReturnObject() {
@@ -118,14 +110,12 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
     //////////////////////// using equals method
     @Test
     public void givenMoodAnalyserClass_WhenProper_ShouldReturnTrue() {
         MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzer();
         Assert.assertEquals(new MoodAnalyzer(), moodAnalise);
     }
-
     ////////////////// TC4.2 crete an exception of class not found
     @Test
     public void givenMoodAnalyser_WhenClassNameImproper_ShouldReturnException() {
@@ -135,9 +125,7 @@ public class moodAnalyzerTest {
             Assert.assertEquals(MoodAnalysisexceptions.entered.NO_SUCH_CLASS, moodAnalysisexceptions.type);
         }
     }
-
-//////////////////////  TC4.3 create an exception of method not found
-
+    //////////////////////  TC4.3 create an exception of method not found
     @Test
     public void givenMoodAnalyser_WhenMethodNameImproper_ShouldReturnException() {
         try {
@@ -148,12 +136,10 @@ public class moodAnalyzerTest {
         }
 
     }
-
     // UC5- Reflector with parameterrised constructure
-    ///////////////////Reflector with parameter constructure
     @Test
     public void givenMoodAnalyserClass_WhenProper_ShouldReturnObject() {
-        MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructure("I an in HAPPY mood");
+        MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructor("I an in HAPPY mood");
         try {
             String mood = moodAnalise.analyzer();
             Assert.assertEquals("HAPPY", mood);
@@ -161,16 +147,13 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
     /////////// using equals method
     @Test
     public void givenMoodAnalyserClass_WhenProper_ShouldReturn() {
-        MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructure("I am in HAPPY mood");
+        MoodAnalyzer moodAnalise = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructor("I am in HAPPY mood");
         Assert.assertEquals(new MoodAnalyzer("I am in HAPPY mood"), moodAnalise);
     }
-////////////// method invoke
-
-
+    ////////////// method invoke tc6.1
     @Test
     public void givenHappy_WhenProper_ShouldReturn() {
         try {
@@ -183,19 +166,54 @@ public class moodAnalyzerTest {
             moodAnalysisexceptions.printStackTrace();
         }
     }
-
+//////////////// TC6.2 method invoke and throws exception of NO_SUCH_METHOD_ERROR
     @Test
     public void givenHappy_WhenIMProper_ShouldReturnException() {
         try {
-            MoodAnalyzer moodAnalyzer = new MoodAnalyzer("HAPPY");
-            String mood = MoodAnalyserFactory.callMthodeInvoked(moodAnalyzer, "HAP");
+            MoodAnalyzer moodAnalyzer = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructor("I am in HAPPY mood");
+            String mood = MoodAnalyserFactory.callMthodeInvoked(moodAnalyzer, "HAPPY");
             Assert.assertEquals("HAPPY", mood);
 
         } catch (MoodAnalysisexceptions moodAnalysisexceptions) {
             Assert.assertEquals(MoodAnalysisexceptions.entered.NO_SUCH_METHOD_ERROR,moodAnalysisexceptions.type);
 
         }
+    }
+    //////////////////// Tc7.1 set field value
+    @Test
+    public void givenHappy_WhenProper_ShouldReturnHappy() {
+        //MoodAnalyzer moodAnalyzer = new MoodAnalyzer("HAPPY");
+        try {
+        MoodAnalyzer moodAnalyzer = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructor("I am in HAPPY mood");
+        //    MoodAnalyzer moodAnalyzer = new MoodAnalyzer("HAPPY");
+            String mood = MoodAnalyserFactory.setFieldMethods(moodAnalyzer,"message","HAPPY");
+            Assert.assertEquals("HAPPY",mood);
 
+        } catch (MoodAnalysisexceptions moodAnalysisexceptions) {
+            moodAnalysisexceptions.printStackTrace();
+        }
+    }
+    //////////////////// Tc7.2 set field  Improper
+    @Test
+    public void givenHappy_WhenImProper_ShouldReturnException() {
+        try {
+            MoodAnalyzer moodAnalyzer = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructor("I am in HAPPY mood");
+            String mood = MoodAnalyserFactory.setFieldMethods(moodAnalyzer,"message1","HAPPY");
+            Assert.assertEquals("HAPPY",mood);
+        } catch (MoodAnalysisexceptions moodAnalysisexceptions) {
+            Assert.assertEquals(MoodAnalysisexceptions.entered.NO_SUCH_FIELD_EXCEPTION,moodAnalysisexceptions.type);
 
+        }
+    }
+    //Tc7.3 set field value = null
+    @Test
+    public void givenHappy_WhenNull_ShouldReturnNullException() {
+        try {
+            MoodAnalyzer moodAnalyzer = MoodAnalyserFactory.createMoodAnalyzerWithParameterConstructor("I am in HAPPY mood");
+            String mood = MoodAnalyserFactory.setFieldMethods(moodAnalyzer,"message","");
+        } catch (MoodAnalysisexceptions moodAnalysisexceptions) {
+            Assert.assertEquals(MoodAnalysisexceptions.entered.Enter_Null,moodAnalysisexceptions.type);
+
+        }
     }
 }
